@@ -1,0 +1,126 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> sentence
+Rule 1     sentence -> sentence element
+Rule 2     sentence -> element
+Rule 3     element -> HIRAGANA
+Rule 4     element -> KATAKANA
+Rule 5     element -> KANJI
+Rule 6     element -> PUNCTUATION
+
+Terminals, with rules where they appear
+
+HIRAGANA             : 3
+KANJI                : 5
+KATAKANA             : 4
+PUNCTUATION          : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+element              : 1 2
+sentence             : 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . sentence
+    (1) sentence -> . sentence element
+    (2) sentence -> . element
+    (3) element -> . HIRAGANA
+    (4) element -> . KATAKANA
+    (5) element -> . KANJI
+    (6) element -> . PUNCTUATION
+
+    HIRAGANA        shift and go to state 3
+    KATAKANA        shift and go to state 4
+    KANJI           shift and go to state 5
+    PUNCTUATION     shift and go to state 6
+
+    sentence                       shift and go to state 1
+    element                        shift and go to state 2
+
+state 1
+
+    (0) S' -> sentence .
+    (1) sentence -> sentence . element
+    (3) element -> . HIRAGANA
+    (4) element -> . KATAKANA
+    (5) element -> . KANJI
+    (6) element -> . PUNCTUATION
+
+    HIRAGANA        shift and go to state 3
+    KATAKANA        shift and go to state 4
+    KANJI           shift and go to state 5
+    PUNCTUATION     shift and go to state 6
+
+    element                        shift and go to state 7
+
+state 2
+
+    (2) sentence -> element .
+
+    HIRAGANA        reduce using rule 2 (sentence -> element .)
+    KATAKANA        reduce using rule 2 (sentence -> element .)
+    KANJI           reduce using rule 2 (sentence -> element .)
+    PUNCTUATION     reduce using rule 2 (sentence -> element .)
+    $end            reduce using rule 2 (sentence -> element .)
+
+
+state 3
+
+    (3) element -> HIRAGANA .
+
+    HIRAGANA        reduce using rule 3 (element -> HIRAGANA .)
+    KATAKANA        reduce using rule 3 (element -> HIRAGANA .)
+    KANJI           reduce using rule 3 (element -> HIRAGANA .)
+    PUNCTUATION     reduce using rule 3 (element -> HIRAGANA .)
+    $end            reduce using rule 3 (element -> HIRAGANA .)
+
+
+state 4
+
+    (4) element -> KATAKANA .
+
+    HIRAGANA        reduce using rule 4 (element -> KATAKANA .)
+    KATAKANA        reduce using rule 4 (element -> KATAKANA .)
+    KANJI           reduce using rule 4 (element -> KATAKANA .)
+    PUNCTUATION     reduce using rule 4 (element -> KATAKANA .)
+    $end            reduce using rule 4 (element -> KATAKANA .)
+
+
+state 5
+
+    (5) element -> KANJI .
+
+    HIRAGANA        reduce using rule 5 (element -> KANJI .)
+    KATAKANA        reduce using rule 5 (element -> KANJI .)
+    KANJI           reduce using rule 5 (element -> KANJI .)
+    PUNCTUATION     reduce using rule 5 (element -> KANJI .)
+    $end            reduce using rule 5 (element -> KANJI .)
+
+
+state 6
+
+    (6) element -> PUNCTUATION .
+
+    HIRAGANA        reduce using rule 6 (element -> PUNCTUATION .)
+    KATAKANA        reduce using rule 6 (element -> PUNCTUATION .)
+    KANJI           reduce using rule 6 (element -> PUNCTUATION .)
+    PUNCTUATION     reduce using rule 6 (element -> PUNCTUATION .)
+    $end            reduce using rule 6 (element -> PUNCTUATION .)
+
+
+state 7
+
+    (1) sentence -> sentence element .
+
+    HIRAGANA        reduce using rule 1 (sentence -> sentence element .)
+    KATAKANA        reduce using rule 1 (sentence -> sentence element .)
+    KANJI           reduce using rule 1 (sentence -> sentence element .)
+    PUNCTUATION     reduce using rule 1 (sentence -> sentence element .)
+    $end            reduce using rule 1 (sentence -> sentence element .)
+
