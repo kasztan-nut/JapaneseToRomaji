@@ -88,14 +88,14 @@ def p_h_word_h_small(p):
     if len(p) == 3:
         if p[1] not in ['\u304D', '\u304E', '\u3057','\u3058','\u3061','\u3062','\u306B','\u3072','\u3073','\u3074','\u307F']:
             raise SyntaxError(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
-        if p[1] in ['\u3057','\u3058','\u3061','\u3062']:
+        if p[1] in ['\u3057','\u3061']:
             p[0] = hiragana_to_romaji.get(p[1])[:-1] + hiragana_to_romaji.get(p[2])[1]
         else:
             p[0] = hiragana_to_romaji.get(p[1])[0] + hiragana_to_romaji.get(p[2])
     else:
         if p[2] not in ['\u304D', '\u304E', '\u3057','\u3058','\u3061','\u3062','\u3072','\u3073','\u3074','\u307F']:
             raise SyntaxError(f"Invalid HIRAGANA combination {p[1]} {p[2]} {p[3]}")
-        if p[2] in ['\u3057','\u3058','\u3061','\u3062']:
+        if p[2] in ['\u3057','\u3061']:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])[:-1] + hiragana_to_romaji.get(p[3])[1]
         else:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[3])
@@ -134,7 +134,7 @@ def p_k_word_k_small(p):
     else:
         if p[2] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
-        if p[2] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
+        if p[2] in ['\u30B7','\u30C1']:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[1]
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3])
@@ -163,7 +163,7 @@ def p_k_word_k_s_long(p):
     else:
         if p[2] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
-        if p[2] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
+        if p[2] in ['\u30B7','\u30C1']:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[-1] + katakana_to_romaji.get(p[3])[-1]
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3]) + katakana_to_romaji.get(p[3])[-1]
