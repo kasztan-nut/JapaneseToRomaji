@@ -8,4 +8,4 @@ _smaller_ - Tokens contain singular hiragana/katakana
    - Added separate token for long sound in Katakana (ー)
 - Parser (Due to changes in tokenization)
   -  Added methods for parsing each type of kana, using small tsu (syllable accenting), using small kana, long sound
-  -  Modified the starting method sentence - consisiting of 1 or many elements (words, punctuation, numbers)
+  -  Modified the starting method sentence - consisting of 1 or many elements (words, punctuation, numbers)
