@@ -53,10 +53,10 @@ katakana_to_romaji = {
 def p_sentence(p):
     '''sentence : sentence element
                 | element
-                | sentence H_element
-                | H_element
-                | sentence K_element
-                | K_element'''
+                | sentence H_WORD
+                | H_WORD
+                | sentence K_WORD
+                | K_WORD'''
     if len(p) == 3:
         p[0] = p[1] + ' ' + p[2]
     else:
@@ -64,29 +64,31 @@ def p_sentence(p):
 
 # Convert Hiragana into Romaji
 def p_element_hiragana(p):
-    '''H_element    : H_WORD
-                    | H_WORD H_element'''
+    '''H_WORD   : H_element
+                | H_element H_WORD'''
     if len(p) == 3:
         p[0] = p[1] + p[2]
     else:
         p[0] = p[1]
 
 def p_h_word_hiragana(p):
-    '''H_WORD   : HIRAGANA
-                | TSU_HIRAGANA HIRAGANA'''
+    '''H_element    : HIRAGANA
+                    | TSU_HIRAGANA HIRAGANA'''
     if len(p) == 2:
         p[0] = hiragana_to_romaji.get(p[1])
     else:
         if p[2] in ['\u306A','\u306B','\u306C','\u306D','\u306E']:
+            print(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
             raise SyntaxError(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
         else:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])
 
 def p_h_word_h_small(p):
-    '''H_WORD   : HIRAGANA SMALL_HIRAGANA
+    '''H_element   : HIRAGANA SMALL_HIRAGANA
                 | TSU_HIRAGANA HIRAGANA SMALL_HIRAGANA'''
     if len(p) == 3:
         if p[1] not in ['\u304D', '\u304E', '\u3057','\u3058','\u3061','\u3062','\u306B','\u3072','\u3073','\u3074','\u307F']:
+            print(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
             raise SyntaxError(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
         if p[1] in ['\u3057','\u3061']:
             p[0] = hiragana_to_romaji.get(p[1])[:-1] + hiragana_to_romaji.get(p[2])[1]
@@ -94,6 +96,7 @@ def p_h_word_h_small(p):
             p[0] = hiragana_to_romaji.get(p[1])[0] + hiragana_to_romaji.get(p[2])
     else:
         if p[2] not in ['\u304D', '\u304E', '\u3057','\u3058','\u3061','\u3062','\u3072','\u3073','\u3074','\u307F']:
+            print(f"Invalid HIRAGANA combination {p[1]} {p[2]} {p[3]}")
             raise SyntaxError(f"Invalid HIRAGANA combination {p[1]} {p[2]} {p[3]}")
         if p[2] in ['\u3057','\u3061']:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])[:-1] + hiragana_to_romaji.get(p[3])[1]
@@ -103,29 +106,31 @@ def p_h_word_h_small(p):
 
 # Convert Katakana into Romaji
 def p_element_katakana(p):
-    '''K_element    : K_WORD
-                    | K_WORD K_element'''
+    '''K_WORD   : K_element
+                | K_element K_WORD'''
     if len(p) == 3:
         p[0] = p[1] + p[2]
     else:
         p[0] = p[1]
 
 def p_k_word_katakana(p):
-    '''K_WORD   : KATAKANA
-                | TSU_KATAKANA KATAKANA '''
+    '''K_element    : KATAKANA
+                    | TSU_KATAKANA KATAKANA '''
     if len(p) == 2:
         p[0] = katakana_to_romaji.get(p[1])
     else:
         if p[2] in ['\u30CA','\u30CB','\u30CC','\u30CD','\u30CE']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])
 
 def p_k_word_k_small(p):
-    '''K_WORD   : KATAKANA SMALL_KATAKANA
-                | TSU_KATAKANA KATAKANA SMALL_KATAKANA'''
+    '''K_element    : KATAKANA SMALL_KATAKANA
+                    | TSU_KATAKANA KATAKANA SMALL_KATAKANA'''
     if len(p) == 3:
         if p[1] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30CB','\u30D2','\u30D3','\u30D4','\u30DF']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
         if p[1] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
             p[0] = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[1]
@@ -133,6 +138,7 @@ def p_k_word_k_small(p):
             p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2])
     else:
         if p[2] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
         if p[2] in ['\u30B7','\u30C1']:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[1]
@@ -140,21 +146,23 @@ def p_k_word_k_small(p):
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3])
 
 def p_k_word_k_long(p):
-    '''K_WORD   : KATAKANA LONG_KATAKANA
-                | TSU_KATAKANA KATAKANA  LONG_KATAKANA'''
+    '''K_element    : KATAKANA LONG_KATAKANA
+                    | TSU_KATAKANA KATAKANA  LONG_KATAKANA'''
     if len(p) == 3:
         p[0] = katakana_to_romaji.get(p[1]) + katakana_to_romaji.get(p[1])[-1]
     else:
         if p[2] in ['\u30CA', '\u30CB', '\u30CC', '\u30CD', '\u30CE']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2]) + katakana_to_romaji.get(p[2])[-1]
 
 def p_k_word_k_s_long(p):
-    '''K_WORD   : KATAKANA SMALL_KATAKANA LONG_KATAKANA
-                | TSU_KATAKANA KATAKANA SMALL_KATAKANA LONG_KATAKANA'''
+    '''K_element    : KATAKANA SMALL_KATAKANA LONG_KATAKANA
+                    | TSU_KATAKANA KATAKANA SMALL_KATAKANA LONG_KATAKANA'''
     if len(p) == 4:
         if p[1] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30CB','\u30D2','\u30D3','\u30D4','\u30DF']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
         if p[1] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
             p[0] = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[-1] + katakana_to_romaji.get(p[2])[-1]
@@ -162,6 +170,7 @@ def p_k_word_k_s_long(p):
             p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2])
     else:
         if p[2] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
         if p[2] in ['\u30B7','\u30C1']:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[-1] + katakana_to_romaji.get(p[3])[-1]
