@@ -8,5 +8,5 @@ if __name__ == '__main__':
     romaji = parser.parse(input_data)
     print(f"Japanese: {input_data}\nRomaji: {romaji}")
 
-    # wrong_romaji = parser.parse(incorrect_data)
-    # print(f"Japanese: {incorrect_data}\nRomaji: {wrong_romaji}")
+    wrong_romaji = parser.parse(incorrect_data)
+    print(f"Japanese: {incorrect_data}\nRomaji: {wrong_romaji}")
