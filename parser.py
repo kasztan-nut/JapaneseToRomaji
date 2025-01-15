@@ -50,19 +50,57 @@ katakana_to_romaji = {
     'ー': "",
 }
 
+# def p_sentence(p):
+#     '''sentence : sentence element
+#                 | element
+#                 | sentence H_WORD
+#                 | H_WORD
+#                 | sentence K_WORD
+#                 | K_WORD'''
+#     if len(p) == 3:
+#         p[0] = p[1] + ' ' + p[2]
+#     else:
+#         p[0] = p[1]
+
+#   TODO ADD METHODS FOR K_FIRST
 def p_sentence(p):
     '''sentence : sentence element
                 | element
-                | sentence H_WORD
-                | H_WORD
-                | sentence K_WORD
-                | K_WORD'''
+                | sentence H_FIRST
+                | H_FIRST
+                | sentence K_FIRST
+                | K_FIRST'''
     if len(p) == 3:
         p[0] = p[1] + ' ' + p[2]
     else:
         p[0] = p[1]
 
+# Sentence containing words with more than one hiragana/katakana symbol
+def p_sentence_kana(p):
+    '''sentence : sentence H_FIRST H_WORD
+                | H_FIRST H_WORD
+                | sentence K_FIRST K_WORD
+                | K_FIRST K_WORD'''
+    if len(p) == 3:
+        p[0] = p[1] + p[2]
+    else:
+        p[0] = p[1] + ' ' + p[2] + p[3]
+
 # Convert Hiragana into Romaji
+def p_first_hiragana(p):
+    '''H_FIRST  : HIRAGANA
+                | HIRAGANA SMALL_HIRAGANA '''
+    if len(p) == 2:
+        p[0] = hiragana_to_romaji.get(p[1])
+    else:
+        if p[1] not in ['\u304D', '\u304E', '\u3057','\u3058','\u3061','\u3062','\u306B','\u3072','\u3073','\u3074','\u307F']:
+            print(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
+            raise SyntaxError(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
+        if p[1] in ['\u3057','\u3061']:
+            p[0] = hiragana_to_romaji.get(p[1])[:-1] + hiragana_to_romaji.get(p[2])[1]
+        else:
+            p[0] = hiragana_to_romaji.get(p[1])[0] + hiragana_to_romaji.get(p[2])
+
 def p_word_hiragana(p):
     '''H_WORD   : H_element
                 | H_element H_WORD'''
@@ -84,8 +122,8 @@ def p_element_hiragana(p):
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])
 
 def p_small_hiragana(p):
-    '''H_element   : HIRAGANA SMALL_HIRAGANA
-                | TSU_HIRAGANA HIRAGANA SMALL_HIRAGANA'''
+    '''H_element    : HIRAGANA SMALL_HIRAGANA
+                    | TSU_HIRAGANA HIRAGANA SMALL_HIRAGANA'''
     if len(p) == 3:
         if p[1] not in ['\u304D', '\u304E', '\u3057','\u3058','\u3061','\u3062','\u306B','\u3072','\u3073','\u3074','\u307F']:
             print(f"Invalid HIRAGANA combination {p[1]} {p[2]}")
