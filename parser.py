@@ -63,7 +63,7 @@ def p_sentence(p):
         p[0] = p[1]
 
 # Convert Hiragana into Romaji
-def p_element_hiragana(p):
+def p_word_hiragana(p):
     '''H_WORD   : H_element
                 | H_element H_WORD'''
     if len(p) == 3:
@@ -71,7 +71,7 @@ def p_element_hiragana(p):
     else:
         p[0] = p[1]
 
-def p_h_word_hiragana(p):
+def p_element_hiragana(p):
     '''H_element    : HIRAGANA
                     | TSU_HIRAGANA HIRAGANA'''
     if len(p) == 2:
@@ -83,7 +83,7 @@ def p_h_word_hiragana(p):
         else:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])
 
-def p_h_word_h_small(p):
+def p_small_hiragana(p):
     '''H_element   : HIRAGANA SMALL_HIRAGANA
                 | TSU_HIRAGANA HIRAGANA SMALL_HIRAGANA'''
     if len(p) == 3:
@@ -105,7 +105,7 @@ def p_h_word_h_small(p):
 
 
 # Convert Katakana into Romaji
-def p_element_katakana(p):
+def p_word_katakana(p):
     '''K_WORD   : K_element
                 | K_element K_WORD'''
     if len(p) == 3:
@@ -113,7 +113,7 @@ def p_element_katakana(p):
     else:
         p[0] = p[1]
 
-def p_k_word_katakana(p):
+def p_element_katakana(p):
     '''K_element    : KATAKANA
                     | TSU_KATAKANA KATAKANA '''
     if len(p) == 2:
@@ -125,7 +125,7 @@ def p_k_word_katakana(p):
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])
 
-def p_k_word_k_small(p):
+def p_small_katakana(p):
     '''K_element    : KATAKANA SMALL_KATAKANA
                     | TSU_KATAKANA KATAKANA SMALL_KATAKANA'''
     if len(p) == 3:
@@ -158,7 +158,7 @@ def p_k_word_k_small(p):
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3])
 
 # Katakana with small vowel
-def p_k_word_s_vowel(p):
+def p_s_vowel_katakana(p):
     '''K_element    : KATAKANA SMALL_K_VOWEL
                     | TSU_KATAKANA KATAKANA SMALL_K_VOWEL'''
     if len(p) == 3:
@@ -219,7 +219,7 @@ def p_k_word_s_vowel(p):
                 print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
                 raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
 
-def p_k_word_k_long(p):
+def p_long_katakana(p):
     '''K_element    : KATAKANA LONG_KATAKANA
                     | TSU_KATAKANA KATAKANA  LONG_KATAKANA'''
     if len(p) == 3:
@@ -231,7 +231,7 @@ def p_k_word_k_long(p):
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2]) + katakana_to_romaji.get(p[2])[-1]
 
-def p_k_word_k_s_long(p):
+def p_small_long_katakana(p):
     '''K_element    : KATAKANA SMALL_KATAKANA LONG_KATAKANA
                     | TSU_KATAKANA KATAKANA SMALL_KATAKANA LONG_KATAKANA'''
     if len(p) == 4:
@@ -255,7 +255,7 @@ def p_k_word_k_s_long(p):
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3]) + katakana_to_romaji.get(p[3])[-1]
 
-def p_k_word_s_vowel_long(p):
+def p_s_vowel_long_katakana(p):
     '''K_element    : KATAKANA SMALL_K_VOWEL LONG_KATAKANA
                     | TSU_KATAKANA KATAKANA SMALL_K_VOWEL LONG_KATAKANA'''
     if len(p) == 4:
@@ -325,7 +325,7 @@ def p_kanji(p):
 
 # Copy punctuation with no modifications
 def p_punctuation(p):
-    '''element : PUNCTUATION'''
+    '''element : SPECIAL'''
     p[0] = p[1]
 
 def p_error(p):

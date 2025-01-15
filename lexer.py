@@ -9,7 +9,7 @@ tokens = (
     'TSU_HIRAGANA',
     'TSU_KATAKANA',
     'LONG_KATAKANA',
-    'PUNCTUATION'
+    'SPECIAL'
 )
 
 t_HIRAGANA = r'[\u3042|\u3044|\u3046|\u3048|\u304A-\u3062|\u3064-\u3082|\u3084|\u3086|\u3088-\u308D|\u308F-\u309F]'
@@ -23,7 +23,7 @@ t_TSU_KATAKANA = r'\u30C3'
 t_LONG_KATAKANA = r'\u30FC'
 
 # Numbers & Punctuation
-t_PUNCTUATION = r'[\u3000-\u303f|\uff00-\uff1f|\uff61|\uffee]+'
+t_SPECIAL = r'[\u3000-\u303f|\uff00-\uff1f|\uff61|\uffee]+'
 
 
 t_ignore = ' \t\n'
