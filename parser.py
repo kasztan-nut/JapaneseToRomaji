@@ -115,8 +115,8 @@ def p_small_hiragana(p):
     i = 1 if len(p) == 3 else 2
     if p[i] not in ['\u304D', '\u304E', '\u3057', '\u3058', '\u3061', '\u3062', '\u306B', '\u3072', '\u3073', '\u3074',
                     '\u307F']:
-        print(f"Invalid HIRAGANA combination {"".join(p[0:])}")
-        raise SyntaxError(f"Invalid HIRAGANA combination {"".join(p[0:])}")
+        print(f"Invalid HIRAGANA combination {"".join(p[1:])}")
+        raise SyntaxError(f"Invalid HIRAGANA combination {"".join(p[1:])}")
     if p[i] in ['\u3057', '\u3061']:
        result = hiragana_to_romaji.get(p[i])[:-1] + hiragana_to_romaji.get(p[i+1])[1]
     else:
@@ -126,8 +126,8 @@ def p_small_hiragana(p):
         p[0] = result
     else:
         if p[2] in ['\u306A', '\u306B', '\u306C', '\u306D', '\u306E']:
-            print(f"Invalid HIRAGANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid HIRAGANA combination {"".join(p[0:])}")
+            print(f"Invalid HIRAGANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid HIRAGANA combination {"".join(p[1:])}")
         else:
             p[0] = result[0] + result
 
@@ -227,16 +227,16 @@ def p_small_katakana(p):
     i = 1 if len(p) == 3 else 2
     if p[i] not in ['\u30C7', '\u30AD', '\u30AE', '\u30B7', '\u30B8', '\u30C1', '\u30C2', '\u30CB', '\u30D2', '\u30D3',
                     '\u30D4', '\u30DF']:
-        print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+        print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     if p[i] in ['\u30B7', '\u30B8', '\u30C1', '\u30C2']:
         result = katakana_to_romaji.get(p[i])[:-1] + katakana_to_romaji.get(p[i+1])[1]
     elif p[i] == '\u30C7':
         if p[i+1] == '\u30E5':
             result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1])
         else:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     else:
         result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1])
     # Check for Small TSU
@@ -244,8 +244,8 @@ def p_small_katakana(p):
         p[0] = result
     else:
         if p[2] in ['\u30CA', '\u30CB', '\u30CC', '\u30CD', '\u30CE']:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
         else:
             p[0] = result[0] + result
 
@@ -254,8 +254,8 @@ def p_s_vowel_katakana(p):
                     | TSU_KATAKANA KATAKANA SMALL_K_VOWEL'''
     i = 1 if len(p) == 3 else 2
     if p[i] not in ['\u30B7', '\u30B8', '\u30C1', '\u30C4', '\u30C6', '\u30C7', '\u30D5']:
-        print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+        print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     # fa, fi, fe, fo
     if p[i] == '\u30D5':
         result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1])
@@ -266,27 +266,27 @@ def p_s_vowel_katakana(p):
         # tsa,tso,
         elif p[i] == '\u30C4':
             if p[i+1] not in ['\u30A1', '\u30A9']:
-                print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+                print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
             else:
                 result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1])
         # ti, di
         elif p[i+1] == '\u30A3':
             if p[i] not in ['\u30C6', '\u30C7']:
-                print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+                print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
             else:
                result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1])
         else:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     # Check for Small TSU
     if len(p) == 3:
         p[0] = result
     else:
         if p[2] in ['\u30CA', '\u30CB', '\u30CC', '\u30CD', '\u30CE']:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
         else:
             p[0] = result[0] + result
 
@@ -308,16 +308,16 @@ def p_small_long_katakana(p):
     i = 1 if len(p) == 4 else 2
     if p[i] not in ['\u30C7', '\u30AD', '\u30AE', '\u30B7', '\u30B8', '\u30C1', '\u30C2', '\u30CB', '\u30D2', '\u30D3',
                     '\u30D4', '\u30DF']:
-        print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+        print(f"Invalid KATAKANA combination {''.join(p[1:])}")
+        raise SyntaxError(f"Invalid KATAKANA combination {''.join(p[1:])}")
     if p[i] in ['\u30B7', '\u30B8', '\u30C1', '\u30C2']:
         result = katakana_to_romaji.get(p[i])[:-1] + katakana_to_romaji.get(p[i+1])[-1] + katakana_to_romaji.get(p[i+1])[-1]
     elif p[i] in ['\u30C7']:
         if p[i+1] == '\u30E5':
             result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1]) + katakana_to_romaji.get(p[i+1])[-1]
         else:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     else:
         result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1]) + katakana_to_romaji.get(p[i+1])[-1]
     # Check for Small TSU
@@ -325,8 +325,8 @@ def p_small_long_katakana(p):
         p[0] = result
     else:
         if p[2] in ['\u30CA', '\u30CB', '\u30CC', '\u30CD', '\u30CE']:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
         else:
             p[0] = result[0] + result
 
@@ -335,8 +335,8 @@ def p_s_vowel_long_katakana(p):
                     | TSU_KATAKANA KATAKANA SMALL_K_VOWEL LONG_KATAKANA'''
     i = 1 if len(p) == 4 else 2
     if p[i] not in ['\u30B7', '\u30B8', '\u30C1', '\u30C4', '\u30C6', '\u30C7', '\u30D5']:
-        print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+        print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+        raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     # fa, fi, fe, fo
     if p[i] == '\u30D5':
         result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1]) + katakana_to_romaji.get(p[i+1])
@@ -347,27 +347,27 @@ def p_s_vowel_long_katakana(p):
         # tsa,tso
         elif p[i] == '\u30C4':
             if p[i+1] not in ['\u30A1', '\u30A9']:
-                print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+                print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
             else:
                 result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1]) + katakana_to_romaji.get(p[i+1])
         # ti, di
         elif p[i+1] == '\u30A3':
             if p[i] not in ['\u30C6', '\u30C7']:
-                print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+                print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+                raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
             else:
                 result = katakana_to_romaji.get(p[i])[0] + katakana_to_romaji.get(p[i+1]) + katakana_to_romaji.get(p[i+1])
         else:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
     # Check for Small TSU
     if len(p) == 4:
         p[0] = result
     else:
         if p[2] in ['\u30CA', '\u30CB', '\u30CC', '\u30CD', '\u30CE']:
-            print(f"Invalid KATAKANA combination {"".join(p[0:])}")
-            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[0:])}")
+            print(f"Invalid KATAKANA combination {"".join(p[1:])}")
+            raise SyntaxError(f"Invalid KATAKANA combination {"".join(p[1:])}")
         else:
             p[0] = result[0] + result
 
