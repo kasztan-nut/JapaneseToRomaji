@@ -109,6 +109,7 @@ def p_element_hiragana(p):
         else:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])
 
+# TODO - TRY TO USE A VARIABLE INSTEAD OF p[1] etc to reduce amount of lines use print("".join(p[1:])) in errors etc
 def p_small_hiragana(p):
     '''H_element    : HIRAGANA SMALL_HIRAGANA
                     | TSU_HIRAGANA HIRAGANA SMALL_HIRAGANA'''
@@ -128,7 +129,6 @@ def p_small_hiragana(p):
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])[:-1] + hiragana_to_romaji.get(p[3])[1]
         else:
             p[0] = hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[2])[0] + hiragana_to_romaji.get(p[3])
-
 
 # Convert Katakana into Romaji
 def p_first_katakana(p):
