@@ -144,18 +144,18 @@ def p_first_katakana(p):
 def p_first_small_katakana(p):
     '''K_first  : KATAKANA SMALL_KATAKANA
                 | KATAKANA SMALL_KATAKANA LONG_KATAKANA'''
-    if p[1] == '\u30C7':
+    if p[1] not in ['\u30C7', '\u30AD', '\u30AE', '\u30B7', '\u30B8', '\u30C1', '\u30C2', '\u30CB', '\u30D2', '\u30D3', '\u30D4',
+                    '\u30DF']:
+        print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
+        raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
+    if p[1] in ['\u30B7', '\u30B8', '\u30C1', '\u30C2']:
+        result = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[1]
+    elif p[1] in ['\u30C7']:
         if p[2] == '\u30E5':
             result = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2])
         else:
             print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-    elif p[1] not in ['\u30AD', '\u30AE', '\u30B7', '\u30B8', '\u30C1', '\u30C2', '\u30CB', '\u30D2', '\u30D3', '\u30D4',
-                    '\u30DF']:
-        print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-        raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-    elif p[1] in ['\u30B7', '\u30B8', '\u30C1', '\u30C2']:
-        result = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[1]
     else:
         result = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2])
     # Check for Long Katakana
@@ -224,35 +224,35 @@ def p_small_katakana(p):
     '''K_element    : KATAKANA SMALL_KATAKANA
                     | TSU_KATAKANA KATAKANA SMALL_KATAKANA'''
     if len(p) == 3:
-        if p[1] == '\u30C7':
+        if p[1] not in ['\u30C7','\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30CB','\u30D2','\u30D3','\u30D4','\u30DF']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
+            raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
+        if p[1] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
+            p[0] = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[1]
+        elif p[1] == '\u30C7':
             if p[2] == '\u30E5':
                 p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2])
             else:
                 print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
                 raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-        if p[1] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30CB','\u30D2','\u30D3','\u30D4','\u30DF']:
-            print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-            raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-        if p[1] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
-            p[0] = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[1]
         else:
             p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2])
     else:
-        if p[2] == '\u30C7':
+        if p[2] not in ['\u30C7', '\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
+            print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
+            raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
+        if p[2] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
+            p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[1]
+        elif p[2] == '\u30C7':
             if p[3] == '\u30E5':
                 p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3])
             else:
                 print(f"Invalid KATAKANA combination {p[1]} {p[2]}")
                 raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]}")
-        if p[2] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
-            print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
-            raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
-        if p[2] in ['\u30B7','\u30C1']:
-            p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[1]
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3])
 
-# Katakana with small vowel
+
 def p_s_vowel_katakana(p):
     '''K_element    : KATAKANA SMALL_K_VOWEL
                     | TSU_KATAKANA KATAKANA SMALL_K_VOWEL'''
@@ -330,25 +330,34 @@ def p_small_long_katakana(p):
     '''K_element    : KATAKANA SMALL_KATAKANA LONG_KATAKANA
                     | TSU_KATAKANA KATAKANA SMALL_KATAKANA LONG_KATAKANA'''
     if len(p) == 4:
-        if p[1] == '\u30C7' and p[2] == '\u30E5':
-            p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2]) + katakana_to_romaji.get(p[2])[-1]
-        if p[1] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30CB','\u30D2','\u30D3','\u30D4','\u30DF']:
+        if p[1] not in ['\u30C7', '\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30CB','\u30D2','\u30D3','\u30D4','\u30DF']:
             print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
         if p[1] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
             p[0] = katakana_to_romaji.get(p[1])[:-1] + katakana_to_romaji.get(p[2])[-1] + katakana_to_romaji.get(p[2])[-1]
+        elif p[1] in ['\u30C7']:
+            if p[2] == '\u30E5':
+                p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2]) + katakana_to_romaji.get(p[2])[-1]
+            else:
+                print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
+                raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]}")
         else:
             p[0] = katakana_to_romaji.get(p[1])[0] + katakana_to_romaji.get(p[2]) + katakana_to_romaji.get(p[2])[-1]
     else:
-        if p[2] == '\u30C7' and p[3] == '\u30E5':
-            p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3]) + katakana_to_romaji.get(p[3])[-1]
-        if p[2] not in ['\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
+        if p[2] not in ['\u30C7','\u30AD', '\u30AE', '\u30B7','\u30B8','\u30C1','\u30C2','\u30D2','\u30D3','\u30D4','\u30DF']:
             print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
             raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
-        if p[2] in ['\u30B7','\u30C1']:
+        if p[2] in ['\u30B7','\u30B8','\u30C1','\u30C2']:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[:-1] + katakana_to_romaji.get(p[3])[-1] + katakana_to_romaji.get(p[3])[-1]
+        elif p[2] in ['\u30C7']:
+            if p[3] == '\u30E5':
+                p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3]) + katakana_to_romaji.get(p[3])[-1]
+            else:
+                print(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
+                raise SyntaxError(f"Invalid KATAKANA combination {p[1]} {p[2]} {p[3]} {p[4]}")
         else:
             p[0] = katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[2])[0] + katakana_to_romaji.get(p[3]) + katakana_to_romaji.get(p[3])[-1]
+
 
 def p_s_vowel_long_katakana(p):
     '''K_element    : KATAKANA SMALL_K_VOWEL LONG_KATAKANA
