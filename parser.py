@@ -142,7 +142,7 @@ def p_first_katakana(p):
         p[0] = result
 
 def p_first_small_katakana(p):
-    '''K_first : KATAKANA SMALL_KATAKANA
+    '''K_first  : KATAKANA SMALL_KATAKANA
                 | KATAKANA SMALL_KATAKANA LONG_KATAKANA'''
     if p[1] == '\u30C7':
         if p[2] == '\u30E5':
