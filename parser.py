@@ -427,8 +427,8 @@ def p_kanji(p):
     result = kakasi.convert(p[1])
     p[0] = " ".join([item['hepburn'] for item in result])
 
-# Copy punctuation with no modifications
-def p_punctuation(p):
+# Copy punctuation/numbers with no modifications
+def p_special(p):
     '''element : SPECIAL'''
     p[0] = p[1]
 
