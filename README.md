@@ -9,20 +9,20 @@ In Japanese:
 - Each Kana (Hiragana & Katakana) represents a syllable
 - Katakana is used for writing words of foreign origin and for this reason it has additional kana which aren't present in Hiragana
 - The sound of a kana can be modified in different ways
-    - Using the small tsu denotes which syllable should be emphasized
+    - Using the small tsu denotes which syllable should be emphasized - っき or ッキ becomes kki
         - this is denoted by repeating the first letter of the syllable
         - any word cannot start with this character
     - Using the small kana i.e. ya, yu, yo the sound of every syllable ending in i is modified
         - this is denoted by replacing the i with the corresponding small kana
         - there are exceptions such as shi and chi which when a small kana is placed in front of them the i sound only takes the vowel sound a, u or o
-        - Katakana has an additional: dyu
+        - Katakana has an additional: デュ(dyu)
     - In Katakana there also exist small vowels a, i, u, e, o
         - these serve a similar purpose as small ya, yu, yo but there only exist these combinations:
-            - fa, fi, fe, fo
-            - she, je, che
-            - tse, tsa, tso
-            - ti, di
-    - Katakana also has a special symbol (--) which describes that the syllable will be extended i.e. (ha-) is read as haa
+            - fa, fi, fe, fo - ファ, フィ, フェ, フォ
+            - she, je, che - シェ, ジェ, チェ
+            - tse, tsa, tso - ツェ, ツァ, ツォ
+            - ti, di - ティ, ディ
+    - Katakana also has a special symbol (ー) which describes that the syllable will be extended i.e. ハー is read as haa
 - Kanji has multiple readings depending on whether the Kanji is by itself or written beside another Kanji
     - Due to the high complexity of Kanji readings, in order to obtain the latin notation of a Kanji phrase, the PyKakasi library is used
 
@@ -32,12 +32,12 @@ The lexer splits the input into tokens:
 - ```HIRAGANA``` - All full sized Hiragana
 - ```KATAKANA``` - All full sized Katakana
 - ```KANJI``` - All Kanji
-- ```SMALL_HIRAGANA``` - Small Hiragana: (ya), (yu), (yo)
-- ```SMALL_KATAKANA``` - Small Katakana: (ya), (yu), (yo)
-- ```SMALL_K_VOWEL``` - Small Katakana vowels: (a), (i) , (u), (e), (o)
-- ```TSU_HIRAGANA``` - Small Tsu Hiragana: (tsu)
-- ```TSU_KATAKANA``` - Small Tsu Hiragana: (tsu)
-- ```LONG_KATAKANA```- Long Symbol Katakana: --
+- ```SMALL_HIRAGANA``` - Small Hiragana: ゃ(ya), ゅ(yu), ょ(yo)
+- ```SMALL_KATAKANA``` - Small Katakana: ャ(ya), ュ(yu), ョ(yo)
+- ```SMALL_K_VOWEL``` - Small Katakana vowels: ァ(a), ィ(i) , ゥ(u), ェ(e), ォ(o)
+- ```TSU_HIRAGANA``` - Small Tsu Hiragana: っ(tsu)
+- ```TSU_KATAKANA``` - Small Tsu Hiragana: ッ(tsu)
+- ```LONG_KATAKANA```- Long Symbol Katakana: ー
 - ```SPECIAL``` - Numbers and Punctuation
 
 ### Parser
