@@ -12,7 +12,7 @@ In Japanese:
     - Using the small tsu denotes which syllable should be emphasized - っき or ッキ becomes kki
         - this is denoted by repeating the first letter of the syllable
         - any word cannot start with this character
-    - Using the small kana i.e. ya, yu, yo the sound of every syllable ending in i is modified
+    - Using the small kana i.e. ゃ(ya), ゅ(yu), ょ(yo), ャ(ya), ュ(yu), ョ(yo) the sound of every syllable ending in i is modified
         - this is denoted by replacing the i with the corresponding small kana
         - there are exceptions such as shi and chi which when a small kana is placed in front of them the i sound only takes the vowel sound a, u or o
         - Katakana has an additional: デュ(dyu)
