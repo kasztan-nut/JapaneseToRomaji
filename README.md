@@ -46,20 +46,18 @@ The lexer splits the input into tokens:
 
 ### Parser
 The parser checks the tokens and processes them:
-- The ```p_sentence``` and ```p_sentence_kana``` describe how the words are created and ensures that they do not start with a small tsu tokens: ```TSU_HIRAGANA``` and ```SMALL_KATAKANA```
+- The ```p_sentence``` and ```p_sentence_kana``` describe how the words are created and ensures that they do not start with a small tsu tokens: ```TSU_HIRAGANA``` and ```SMALL_KATAKANA``` by using ```H_first``` and ```K_first```
     - if either ```TSU_HIRAGANA``` or ```SMALL_KATAKANA``` tokens are found at the start of the word then the corresponding error method is called: ```p_h_small_tsu_error``` and ```p_k_small_tsu_error```
 - The ```p_sentence``` and ```p_sentence_kana``` ensure that the words written in Hiragana and Katakana do not start with the small tsu by using ```H_first``` and ```K_first```, which describe all possible combinations of kana that do not start with the small tsu
 - If the word consists of more than one kana then ```p_word_hiragana``` or ```p_word_katakana``` method is called, which can invoke: 
     - For Hiragana:
-        - ```p_element_hiragana``` - Describing Hiragana, with or without preceding small tsu
-        - ```p_small_hiragana``` - Describing Hiragana followed by small kana, with or without a preceding small tsu
+        - ```p_first_hiragana``` - Describing single Hiragana, which may be followed by small kana
     - For Katakana:
-        - ```p_element_katakana``` - Describing Katakana, with or without preceding small tsu
-        - ```p_small_katakana``` - Describing Katakana followed by small kana, with or without a preceding small tsu
-        - ```p_s_vowel_katakana``` -Describing Katakana followed by small vowel, with or without a preceding small tsu
-        - ```p_long_katakana``` - similar to ```p_element_katakana``` but also followed by the Long Symbol
-        - ```p_small_long_katakana``` - similar to ```p_small_katakana``` but also followed by the Long Symbol
-        - ```p_s_vowel_long_katakana``` - similar to ```p_s_vowel_katakana``` but also followed by the Long Symbol
+        - ```p_first_katakana``` - Describing single Katakana, that may be followed by a Long Symbol
+        - ```p_first_small_katakana``` - Describing single Katakana followed by small kana, that may also be followed by a Long Symbol
+        - ```p_first_s_vowel_katakana``` - Describing single Katakana followed by small vowel, that may also be followed by a Long Symbol
+- If the word consists of more than one kana and this kana is to be emphasized then ```p_word_tsu_hiragana``` or ```p_word_tsu_katakana``` is called:
+    - These methods perform the same function as ```p_word_hiragana``` or ```p_word_katakana``` but with a preceding small tsu: っ or ッ
 - Kanji is converted into romaji using the pykakasi library due to the complexity of reading Kanji
     - it is converted into romaji using the Hepburn notation, which is the most common latin notation of japanese words
 - ```SPECIAL``` characters are copied from the input without modifications 
