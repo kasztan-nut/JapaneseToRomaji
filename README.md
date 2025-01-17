@@ -1,7 +1,11 @@
-# JapaneseToRomaji - Project for AUG classes
+# Updated JapanaeseToRomaji 
 This project utilizes Python, PLY (Python Lex-Yacc) and PyKakasi library
 
 The goal of the project is to create a parser and grammar that is close to representing all input in mixed hiragana and katakana as well as kanji into romaji (latin notation - converted into the latin alphabet)
+
+## Changes
+- Reduced the amount of code by changing the structure of ```H_word``` and ```K_word``` which consist of a ```H_element```/```K_element``` or ```TSU_HIRAGANA H_element```/```TSU_KATAKANA K_element```
+- ```H_element```/```K_element``` now consist of only ```H_first```/```K_first```
 
 ## Foreword
 In order to understand what the program does it is necessary to understand the basic rules of the Japanese alphabets.
