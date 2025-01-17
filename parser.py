@@ -203,7 +203,7 @@ def p_word_katakana(p):
 
 def p_word_tsu_katakana(p):
     '''K_word   : TSU_KATAKANA K_element
-                | TSU_KATAKANA K_element H_word'''
+                | TSU_KATAKANA K_element K_word'''
     result = p[2]
     if result[0] == 'n':
         print("Error: small TSU (っ) cannot appear before any kana starting with N")

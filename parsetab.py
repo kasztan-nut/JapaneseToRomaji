@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'HIRAGANA KANJI KATAKANA LONG_KATAKANA SMALL_HIRAGANA SMALL_KATAKANA SMALL_K_VOWEL SPECIAL TSU_HIRAGANA TSU_KATAKANAsentence : sentence element\n| element\n| sentence H_first\n| H_first\n| sentence K_first\n| K_firstsentence : sentence H_first H_word\n| H_first H_word\n| sentence K_first K_word\n| K_first K_wordH_first  : HIRAGANA\n| HIRAGANA SMALL_HIRAGANA H_word   : H_element\n| H_element H_wordH_word   : TSU_HIRAGANA H_element\n| TSU_HIRAGANA H_element H_wordH_element  : H_firstK_first  : KATAKANA\n| KATAKANA  LONG_KATAKANAK_first  : KATAKANA SMALL_KATAKANA\n| KATAKANA SMALL_KATAKANA LONG_KATAKANAK_first  : KATAKANA SMALL_K_VOWEL\n| KATAKANA SMALL_K_VOWEL LONG_KATAKANAK_word   : K_element\n| K_element K_wordK_word   : TSU_KATAKANA K_element\n| TSU_KATAKANA K_element H_wordK_element  : K_firstelement : KANJIelement : SPECIALH_first  : TSU_HIRAGANAK_first  : TSU_KATAKANA'
+_lr_signature = 'HIRAGANA KANJI KATAKANA LONG_KATAKANA SMALL_HIRAGANA SMALL_KATAKANA SMALL_K_VOWEL SPECIAL TSU_HIRAGANA TSU_KATAKANAsentence : sentence element\n| element\n| sentence H_first\n| H_first\n| sentence K_first\n| K_firstsentence : sentence H_first H_word\n| H_first H_word\n| sentence K_first K_word\n| K_first K_wordH_first  : HIRAGANA\n| HIRAGANA SMALL_HIRAGANA H_word   : H_element\n| H_element H_wordH_word   : TSU_HIRAGANA H_element\n| TSU_HIRAGANA H_element H_wordH_element  : H_firstK_first  : KATAKANA\n| KATAKANA  LONG_KATAKANAK_first  : KATAKANA SMALL_KATAKANA\n| KATAKANA SMALL_KATAKANA LONG_KATAKANAK_first  : KATAKANA SMALL_K_VOWEL\n| KATAKANA SMALL_K_VOWEL LONG_KATAKANAK_word   : K_element\n| K_element K_wordK_word   : TSU_KATAKANA K_element\n| TSU_KATAKANA K_element K_wordK_element  : K_firstelement : KANJIelement : SPECIALH_first  : TSU_HIRAGANAK_first  : TSU_KATAKANA'
     
-_lr_action_items = {'KANJI':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[5,5,-2,-4,-6,-29,-30,-11,-31,-18,-32,-1,-3,-5,-17,-8,-13,-31,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'SPECIAL':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[6,6,-2,-4,-6,-29,-30,-11,-31,-18,-32,-1,-3,-5,-17,-8,-13,-31,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'HIRAGANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[7,7,-2,7,-6,-29,-30,-11,-31,-18,-32,-1,7,-5,-17,-8,7,7,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,7,-25,7,-21,-23,-16,-27,]),'TSU_HIRAGANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[8,8,-2,17,-6,-29,-30,-11,-31,-18,-32,-1,17,-5,-17,-8,17,8,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,17,-25,17,-21,-23,-16,-27,]),'KATAKANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[9,9,-2,-4,9,-29,-30,-11,-31,-18,-32,-1,-3,9,-17,-8,-13,-31,-28,-10,9,9,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'TSU_KATAKANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[10,10,-2,-4,21,-29,-30,-11,-31,-18,-32,-1,-3,21,-17,-8,-13,-31,-28,-10,21,10,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[0,-2,-4,-6,-29,-30,-11,-31,-18,-32,-1,-3,-5,-17,-8,-13,-31,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'SMALL_HIRAGANA':([7,],[22,]),'LONG_KATAKANA':([9,24,25,],[23,32,33,]),'SMALL_KATAKANA':([9,],[24,]),'SMALL_K_VOWEL':([9,],[25,]),}
+_lr_action_items = {'KANJI':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[5,5,-2,-4,-6,-29,-30,-11,-31,-18,-32,-1,-3,-5,-17,-8,-13,-31,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'SPECIAL':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[6,6,-2,-4,-6,-29,-30,-11,-31,-18,-32,-1,-3,-5,-17,-8,-13,-31,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'HIRAGANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[7,7,-2,7,-6,-29,-30,-11,-31,-18,-32,-1,7,-5,-17,-8,7,7,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,7,-25,-26,-21,-23,-16,-27,]),'TSU_HIRAGANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[8,8,-2,17,-6,-29,-30,-11,-31,-18,-32,-1,17,-5,-17,-8,17,8,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,17,-25,-26,-21,-23,-16,-27,]),'KATAKANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[9,9,-2,-4,9,-29,-30,-11,-31,-18,-32,-1,-3,9,-17,-8,-13,-31,-28,-10,9,9,-12,-19,-20,-22,-7,-9,-14,-15,-25,9,-21,-23,-16,-27,]),'TSU_KATAKANA':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[10,10,-2,-4,21,-29,-30,-11,-31,-18,-32,-1,-3,21,-17,-8,-13,-31,-28,-10,21,10,-12,-19,-20,-22,-7,-9,-14,-15,-25,21,-21,-23,-16,-27,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,],[0,-2,-4,-6,-29,-30,-11,-31,-18,-32,-1,-3,-5,-17,-8,-13,-31,-28,-10,-24,-32,-12,-19,-20,-22,-7,-9,-14,-15,-25,-26,-21,-23,-16,-27,]),'SMALL_HIRAGANA':([7,],[22,]),'LONG_KATAKANA':([9,24,25,],[23,32,33,]),'SMALL_KATAKANA':([9,],[24,]),'SMALL_K_VOWEL':([9,],[25,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sentence':([0,],[1,]),'element':([0,1,],[2,11,]),'H_first':([0,1,3,12,16,17,29,31,],[3,12,14,14,14,14,14,14,]),'K_first':([0,1,4,13,20,21,],[4,13,18,18,18,18,]),'H_word':([3,12,16,29,31,],[15,26,28,34,35,]),'H_element':([3,12,16,17,29,31,],[16,16,16,29,16,16,]),'K_word':([4,13,20,],[19,27,30,]),'K_element':([4,13,20,21,],[20,20,20,31,]),}
+_lr_goto_items = {'sentence':([0,],[1,]),'element':([0,1,],[2,11,]),'H_first':([0,1,3,12,16,17,29,],[3,12,14,14,14,14,14,]),'K_first':([0,1,4,13,20,21,31,],[4,13,18,18,18,18,18,]),'H_word':([3,12,16,29,],[15,26,28,34,]),'H_element':([3,12,16,17,29,],[16,16,16,29,16,]),'K_word':([4,13,20,31,],[19,27,30,35,]),'K_element':([4,13,20,21,31,],[20,20,20,31,20,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -39,24 +39,24 @@ _lr_productions = [
   ('sentence -> K_first K_word','sentence',2,'p_sentence_kana','parser.py',71),
   ('H_first -> HIRAGANA','H_first',1,'p_first_hiragana','parser.py',79),
   ('H_first -> HIRAGANA SMALL_HIRAGANA','H_first',2,'p_first_hiragana','parser.py',80),
-  ('H_word -> H_element','H_word',1,'p_word_hiragana','parser.py',101),
-  ('H_word -> H_element H_word','H_word',2,'p_word_hiragana','parser.py',102),
-  ('H_word -> TSU_HIRAGANA H_element','H_word',2,'p_word_tsu_hiragana','parser.py',109),
-  ('H_word -> TSU_HIRAGANA H_element H_word','H_word',3,'p_word_tsu_hiragana','parser.py',110),
-  ('H_element -> H_first','H_element',1,'p_element_hiragana','parser.py',122),
-  ('K_first -> KATAKANA','K_first',1,'p_first_katakana','parser.py',127),
-  ('K_first -> KATAKANA LONG_KATAKANA','K_first',2,'p_first_katakana','parser.py',128),
-  ('K_first -> KATAKANA SMALL_KATAKANA','K_first',2,'p_first_small_katakana','parser.py',137),
-  ('K_first -> KATAKANA SMALL_KATAKANA LONG_KATAKANA','K_first',3,'p_first_small_katakana','parser.py',138),
-  ('K_first -> KATAKANA SMALL_K_VOWEL','K_first',2,'p_first_s_vowel_katakana','parser.py',160),
-  ('K_first -> KATAKANA SMALL_K_VOWEL LONG_KATAKANA','K_first',3,'p_first_s_vowel_katakana','parser.py',161),
-  ('K_word -> K_element','K_word',1,'p_word_katakana','parser.py',204),
-  ('K_word -> K_element K_word','K_word',2,'p_word_katakana','parser.py',205),
-  ('K_word -> TSU_KATAKANA K_element','K_word',2,'p_word_tsu_katakana','parser.py',212),
-  ('K_word -> TSU_KATAKANA K_element H_word','K_word',3,'p_word_tsu_katakana','parser.py',213),
-  ('K_element -> K_first','K_element',1,'p_element_katakana','parser.py',225),
-  ('element -> KANJI','element',1,'p_kanji','parser.py',392),
-  ('element -> SPECIAL','element',1,'p_special','parser.py',398),
-  ('H_first -> TSU_HIRAGANA','H_first',1,'p_h_small_tsu_error','parser.py',406),
-  ('K_first -> TSU_KATAKANA','K_first',1,'p_k_small_tsu_error','parser.py',412),
+  ('H_word -> H_element','H_word',1,'p_word_hiragana','parser.py',94),
+  ('H_word -> H_element H_word','H_word',2,'p_word_hiragana','parser.py',95),
+  ('H_word -> TSU_HIRAGANA H_element','H_word',2,'p_word_tsu_hiragana','parser.py',102),
+  ('H_word -> TSU_HIRAGANA H_element H_word','H_word',3,'p_word_tsu_hiragana','parser.py',103),
+  ('H_element -> H_first','H_element',1,'p_element_hiragana','parser.py',117),
+  ('K_first -> KATAKANA','K_first',1,'p_first_katakana','parser.py',122),
+  ('K_first -> KATAKANA LONG_KATAKANA','K_first',2,'p_first_katakana','parser.py',123),
+  ('K_first -> KATAKANA SMALL_KATAKANA','K_first',2,'p_first_small_katakana','parser.py',132),
+  ('K_first -> KATAKANA SMALL_KATAKANA LONG_KATAKANA','K_first',3,'p_first_small_katakana','parser.py',133),
+  ('K_first -> KATAKANA SMALL_K_VOWEL','K_first',2,'p_first_s_vowel_katakana','parser.py',157),
+  ('K_first -> KATAKANA SMALL_K_VOWEL LONG_KATAKANA','K_first',3,'p_first_s_vowel_katakana','parser.py',158),
+  ('K_word -> K_element','K_word',1,'p_word_katakana','parser.py',197),
+  ('K_word -> K_element K_word','K_word',2,'p_word_katakana','parser.py',198),
+  ('K_word -> TSU_KATAKANA K_element','K_word',2,'p_word_tsu_katakana','parser.py',205),
+  ('K_word -> TSU_KATAKANA K_element K_word','K_word',3,'p_word_tsu_katakana','parser.py',206),
+  ('K_element -> K_first','K_element',1,'p_element_katakana','parser.py',220),
+  ('element -> KANJI','element',1,'p_kanji','parser.py',224),
+  ('element -> SPECIAL','element',1,'p_special','parser.py',230),
+  ('H_first -> TSU_HIRAGANA','H_first',1,'p_h_small_tsu_error','parser.py',238),
+  ('K_first -> TSU_KATAKANA','K_first',1,'p_k_small_tsu_error','parser.py',245),
 ]
