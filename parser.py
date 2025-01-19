@@ -220,6 +220,7 @@ def p_element_katakana(p):
     '''K_element  : K_first'''
     p[0] = p[1]
 
+# Convert Katakana into Romaji using Kakasi
 def p_kanji(p):
     '''element : KANJI'''
     result = kakasi.convert(p[1])
@@ -233,14 +234,14 @@ def p_special(p):
 def p_error(p):
     print("Syntax error in input")
 
-# Ensures that a word in hiragana doesn't start with small tsu - accent mark
+# HIRAGANA - Ensures that word doesn't start with small tsu - accent mark
 def p_h_small_tsu_error(p):
     '''H_first  : TSU_HIRAGANA'''
     print(f"Word cannot start with small tsu ({p[1]})")
     raise SyntaxError(f"Word cannot start with small tsu ({p[1]})")
     # p[0] = "<INVALID>"
 
-# Ensures that a word in katakana doesn't start with small tsu - accent mark
+# KATAKANA - Ensures word doesn't start with small tsu - accent mark
 def p_k_small_tsu_error(p):
     '''K_first  : TSU_KATAKANA'''
     print(f"Word cannot start with small tsu ({p[1]})")
