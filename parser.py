@@ -220,7 +220,7 @@ def p_element_katakana(p):
     '''K_element  : K_first'''
     p[0] = p[1]
 
-# Convert Katakana into Romaji using Kakasi
+# Convert Kanji into Romaji using Kakasi
 def p_kanji(p):
     '''element : KANJI'''
     result = kakasi.convert(p[1])
